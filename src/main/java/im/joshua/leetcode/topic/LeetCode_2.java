@@ -1,6 +1,7 @@
 package im.joshua.leetcode.topic;
 
 import com.google.gson.JsonArray;
+import im.joshua.leetcode.util.ListNode;
 
 import javax.swing.*;
 import java.util.HashMap;
@@ -25,73 +26,14 @@ public class LeetCode_2 extends LeetCodeTopic {
 */
 
     public static void main(String[] args) {
-        LeetCodeTopic t2 = new LeetCode_2(LeetCode_2.ListNode.parse("4-6-8"),
-                LeetCode_2.ListNode.parse("3-6"));
+        LeetCodeTopic t2 = new LeetCode_2(parse("4-6-8"),
+                parse("3-6"));
         System.out.println(t2.solve());
     }
 
-    private ListNode l1, l2;
+    private ListNode<Integer> l1, l2;
 
-    public static class ListNode {
-        private int val;
-        private ListNode next;
-
-        public ListNode(int val) {
-            this.val = val;
-        }
-
-        public ListNode(int val, ListNode next) {
-            this.val = val;
-            this.next = next;
-        }
-
-        public int getVal() {
-            return val;
-        }
-
-        public void setVal(int val) {
-            this.val = val;
-        }
-
-        public ListNode getNext() {
-            return next;
-        }
-
-        public void setNext(ListNode next) {
-            this.next = next;
-        }
-
-        public static ListNode parse(String list) {
-            String[] split = list.split("-");
-            ListNode res = null;
-            ListNode cursor = null;
-            for (String s : split) {
-                if (res == null) {
-                    res = new ListNode(Integer.parseInt(s));
-                    cursor = res;
-                } else {
-                    cursor.next = new ListNode(Integer.parseInt(s));
-                    cursor = cursor.next;
-                }
-            }
-
-            return res;
-        }
-
-        @Override
-        public String toString() {
-            ListNode tmp = this;
-            StringBuilder sb = new StringBuilder(String.valueOf(val));
-            while (tmp.next != null) {
-                tmp = tmp.next;
-                sb.append("->").append(tmp.val);
-            }
-
-            return sb.toString();
-        }
-    }
-
-    public LeetCode_2(ListNode l1, ListNode l2) {
+    public LeetCode_2(ListNode<Integer> l1, ListNode<Integer> l2) {
         this.l1 = l1;
         this.l2 = l2;
     }
@@ -108,24 +50,41 @@ public class LeetCode_2 extends LeetCodeTopic {
         ListNode res = new ListNode(0);
         ListNode cursor = res;
         while (l1 != null || l2 != null) {
-            int n1 = l1 == null ? 0 : l1.val;
-            int n2 = l2 == null ? 0 : l2.val;
+            int n1 = l1 == null ? 0 : l1.getVal().intValue();
+            int n2 = l2 == null ? 0 : l2.getVal().intValue();
 
             int r = n1 + n2 + carry;
             carry = r / 10;
             r = r % 10;
-            cursor.next = new ListNode(r);
-            cursor = cursor.next;
+            cursor.setNext(new ListNode(r));
+            cursor = cursor.getNext();
 
             if (l1 != null)
-                l1 = l1.next;
+                l1 = l1.getNext();
             if (l2 != null)
-                l2 = l2.next;
+                l2 = l2.getNext();
         }
 
         if (carry != 0)
-            cursor.next = new ListNode(carry);
+            cursor.setNext(new ListNode(carry));
 
-        return res.next == null ? "null" : res.next.toString();
+        return res.getNext() == null ? "null" : res.getNext().toString();
+    }
+
+    public static ListNode<Integer> parse(String list) {
+        String[] split = list.split("-");
+        ListNode res = null;
+        ListNode cursor = null;
+        for (String s : split) {
+            if (res == null) {
+                res = new ListNode(Integer.parseInt(s));
+                cursor = res;
+            } else {
+                cursor.setNext(new ListNode(Integer.parseInt(s)));
+                cursor = cursor.getNext();
+            }
+        }
+
+        return res;
     }
 }
