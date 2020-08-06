@@ -2,6 +2,8 @@ package im.joshua.leetcode.topic;
 
 import com.google.gson.JsonArray;
 
+import java.util.Arrays;
+
 public class LeetCode_4 extends LeetCodeTopic {
 /*
     给定两个大小为 m 和 n 的有序数组 nums1 和 nums2。
@@ -29,9 +31,8 @@ public class LeetCode_4 extends LeetCodeTopic {
 */
 
     public static void main(String[] args) {
-        LeetCodeTopic t4 = new LeetCode_4(new int[]{2,3,4}, new int[]{1});
+        LeetCodeTopic t4 = new LeetCode_4(new int[]{2, 3, 4}, new int[]{1});
         System.out.println(t4.solve());
-        System.out.println((-1/2)+"");
     }
 
     private int[] num1, num2;
@@ -66,10 +67,7 @@ public class LeetCode_4 extends LeetCodeTopic {
 
         for (int i = 0; i < len2; i++)
             array = insert(num2[i], array);
-
-        for (int n : array)
-            System.out.print(n + "\t");
-
+        System.out.println("[after insert]:" + Arrays.toString(array));
         if ((len1 + len2) % 2 == 0) {
             int index = (len1 + len2) / 2;
             return String.valueOf((array[index - 1] + array[index]) / 2.f);
@@ -81,7 +79,7 @@ public class LeetCode_4 extends LeetCodeTopic {
 
     private int[] insert(int n, int[] src) {
         if (src == null)
-            return null;
+            return new int[]{n};
 
         int len = src.length;
         if (len == 0)

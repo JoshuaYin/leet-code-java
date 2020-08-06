@@ -1,11 +1,6 @@
 package im.joshua.leetcode.topic;
 
-import com.google.gson.JsonArray;
 import im.joshua.leetcode.util.ListNode;
-
-import javax.swing.*;
-import java.util.HashMap;
-import java.util.Map;
 
 public class LeetCode_2 extends LeetCodeTopic {
 /*
