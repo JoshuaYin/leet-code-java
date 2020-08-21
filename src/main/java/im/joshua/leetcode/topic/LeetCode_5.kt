@@ -1,5 +1,7 @@
 package im.joshua.leetcode.topic
 
+import java.util.*
+
 /**
  * @description:
  * @author: joshua
@@ -23,7 +25,7 @@ package im.joshua.leetcode.topic
 //
 // Related Topics 字符串 动态规划
 fun main(args: Array<String>) {
-    val topic = LeetCode_5("abababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababab")
+    val topic = LeetCode_5("abacabbacad")
     println(topic.solve())
 }
 
@@ -35,23 +37,58 @@ class LeetCode_5(val s: String) : LeetCodeTopic() {
 
     var max = ""
     override fun solution(): String {
-        loopMain@
-        for ((index, start) in s.toCharArray().withIndex()) {
-            val lastIndex = s.lastIndexOf(start)
-            val subStr = s.substring(index, lastIndex + 1)
-            if (lastIndex - index < 3) {
-                max = pickMax(max, subStr)
-                continue@loopMain
-            }
+        val len = s.length
+        if (len < 2)
+            return s
 
-            val tmp = subFunc(subStr)
-            if (!tmp.isNullOrEmpty()) {
-                println("[match]:$subStr")
-                max = pickMax(max, tmp)
-            }
+        val dp: Array<BooleanArray> = Array(len) { BooleanArray(len) { false } }
+
+        for (i in 0 until len) {
+            dp[i][i] = true
         }
 
-        return max
+        val charArr = s.toCharArray()
+        var maxLen = 1
+        var start = 0
+
+        for (j in 1 until len) {
+            // 只有下面这一行和「参考代码 2」不同，i 正着写、倒过来写都行，因为子串都有参考值
+            for (i in (j - 1) downTo 0) {
+                println("[$i]:${charArr[i]} [$j]:${charArr[j]}")
+                if (charArr[i] == charArr[j]) {
+                    if (j - i < 3) {
+                        dp[i][j] = true
+                    } else {
+                        println("else-> [${i + 1}]:${charArr[i + 1]} [${j - 1}]:${charArr[j - 1]}")
+                        dp[i][j] = dp[i + 1][j - 1]
+                    }
+                } else {
+                    dp[i][j] = false
+                }
+                println("dp[$i][$j]:${dp[i][j]}")
+
+                // 只要 dp[i][j] == true 成立，就表示子串 s[i, j] 是回文，此时记录回文长度和起始位置
+                if (dp[i][j]) {
+                    val curLen = j - i + 1
+                    if (curLen > maxLen) {
+                        maxLen = curLen
+                        start = i
+                    }
+                }
+            }
+
+            println("-------------------------------------")
+        }
+
+        for (i in 0 until len) {
+            var sb = StringBuilder()
+            for (j in 0 until len) {
+                sb.append("[$i][$j]:${dp[i][j]}\t")
+            }
+            println(sb.toString())
+        }
+
+        return s.substring(start, start + maxLen)
     }
 
     private fun pickMax(old: String, new: String): String {
