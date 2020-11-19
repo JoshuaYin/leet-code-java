@@ -2,7 +2,7 @@ package im.joshua.leetcode.topic;
 
 import com.google.gson.JsonObject;
 
-public abstract class LeetCodeTopic {
+public abstract class LeetCodeTopic<Res> {
     public final static String MSG_INPUT_PARAM_WRONG = "input params is wrong";
     public final static String MSG_NO_SOLUTION = "there is no solution with the input params";
 
@@ -10,12 +10,12 @@ public abstract class LeetCodeTopic {
 
     protected abstract void formatParams();
 
-    protected abstract String solution();
+    protected abstract Res solution();
 
     public String solve() {
         formatParams();
         long time = System.currentTimeMillis();
-        String answer = solution();
+        Res answer = solution();
         time = System.currentTimeMillis() - time;
         StringBuilder sb = new StringBuilder("[params]:")
                 .append(params)
