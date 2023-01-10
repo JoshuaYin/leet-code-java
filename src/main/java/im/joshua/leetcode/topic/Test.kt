@@ -9,11 +9,11 @@ package im.joshua.leetcode.topic
  */
 
 fun main(args: Array<String>) {
-    val topic = LeetCode_10("-91283472332", "")
-    println(topic.solve())
+    val code = "3052334"
+    println("${code.toByteArray().joinToString()}")
 }
 
-class LeetCode_10(val s: String, val p: String) : LeetCodeTopic<Boolean>() {
+class Test(val s: String, val p: String) : LeetCodeTopic<Boolean>() {
 
     override fun formatParams() {
         params.addProperty("s", s)
