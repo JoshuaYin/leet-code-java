@@ -1,6 +1,5 @@
 package im.joshua.leetcode.topic
 
-import java.util.*
 
 /**
  * @description:
