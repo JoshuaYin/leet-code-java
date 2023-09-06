@@ -1,4 +1,6 @@
-package im.joshua.leetcode.topic
+package im.joshua.leetcode.topic.hard
+
+import im.joshua.leetcode.topic.LeetCodeTopic
 
 
 /**

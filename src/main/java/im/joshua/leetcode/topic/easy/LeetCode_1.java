@@ -1,8 +1,7 @@
-package im.joshua.leetcode.topic;
+package im.joshua.leetcode.topic.easy;
 
 import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
+import im.joshua.leetcode.topic.LeetCodeTopic;
 
 import java.util.HashMap;
 import java.util.Map;

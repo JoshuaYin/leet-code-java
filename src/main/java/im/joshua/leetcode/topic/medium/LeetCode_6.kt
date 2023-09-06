@@ -1,10 +1,8 @@
-package im.joshua.leetcode.topic
+package im.joshua.leetcode.topic.medium
 
-import java.lang.StringBuilder
-import java.util.*
+import im.joshua.leetcode.topic.LeetCodeTopic
 import kotlin.math.max
 import kotlin.math.min
-import kotlin.math.roundToInt
 
 /**
  * @description:

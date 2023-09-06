@@ -1,4 +1,6 @@
-package im.joshua.leetcode.topic;
+package im.joshua.leetcode.topic.easy;
+
+import im.joshua.leetcode.topic.LeetCodeTopic;
 
 public class LeetCode_9 extends LeetCodeTopic<String> {
     public static void main(String[] args) {

@@ -1,6 +1,7 @@
-package im.joshua.leetcode.topic;
+package im.joshua.leetcode.topic.hard;
 
 import com.google.gson.JsonArray;
+import im.joshua.leetcode.topic.LeetCodeTopic;
 
 import java.util.Arrays;
 

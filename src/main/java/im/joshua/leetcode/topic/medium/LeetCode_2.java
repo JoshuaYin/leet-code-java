@@ -1,5 +1,6 @@
-package im.joshua.leetcode.topic;
+package im.joshua.leetcode.topic.medium;
 
+import im.joshua.leetcode.topic.LeetCodeTopic;
 import im.joshua.leetcode.util.ListNode;
 
 public class LeetCode_2 extends LeetCodeTopic {

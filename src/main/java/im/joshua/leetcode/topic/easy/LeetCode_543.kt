@@ -1,9 +1,7 @@
-package im.joshua.leetcode.topic
+package im.joshua.leetcode.topic.easy
 
+import im.joshua.leetcode.topic.LeetCodeTopic
 import im.joshua.leetcode.util.TreeNode
-import kotlin.math.ceil
-import kotlin.math.log2
-import kotlin.math.pow
 
 
 /**
